@@ -34,13 +34,10 @@ void ChangeBrightness();
 
 void setup() {
   delay(3000);  // power-up safety delay
-  
   pinMode(BUTTON_PIN, INPUT);
 
-  // Serial.begin(9600);
-
   FastLED.addLeds<LED_TYPE, LED_PIN, COLOR_ORDER>(leds, NUM_LEDS).setCorrection(TypicalLEDStrip);
-  // FastLED.setBrightness(brightness);
+  
   ChangeBrightness();
 
   currentPalette = RainbowColors_p;
@@ -51,8 +48,6 @@ void setup() {
 void loop() {
   if (digitalRead(BUTTON_PIN) == 1) {
     pressCounter++;
-    // Serial.print("Button pressed. Counter: ");
-    // Serial.println(pressCounter);
     delay(500);
   }
 
@@ -119,7 +114,6 @@ void ChangePalettePeriodically() {
   }
 }
 
-// This function fills the palette with totally random colors.
 void SetupTotallyRandomPalette() {
   for (int i = 0; i < 16; ++i) {
     currentPalette[i] = CHSV(random8(), 255, random8());
@@ -140,7 +134,6 @@ void SetupBlackAndWhiteStripedPalette() {
   currentPalette[12] = CRGB::White;
 }
 
-// This function sets up a palette of purple and green stripes.
 void SetupPurpleAndGreenPalette() {
   CRGB purple = CHSV(HUE_PURPLE, 255, 255);
   CRGB green = CHSV(HUE_GREEN, 255, 255);
